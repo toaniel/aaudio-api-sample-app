@@ -234,8 +234,6 @@ void StreamEngine::createPlaybackStream() {
  */
 void StreamEngine::setupPlaybackStreamParameters(AAudioStreamBuilder *builder) {
 
-//    AAudioStreamBuilder_setDeviceId(builder, playbackDeviceId_); //fh4 audo
-//    AAudioStreamBuilder_setDirection(builder, AAUDIO_DIRECTION_OUTPUT);
     AAudioStreamBuilder_setFormat(builder, AAUDIO_FORMAT_PCM_I16);
     AAudioStreamBuilder_setChannelCount(builder, 2); // stereo
     AAudioStreamBuilder_setSampleRate(builder, 48000); // 48KHz
@@ -243,16 +241,6 @@ void StreamEngine::setupPlaybackStreamParameters(AAudioStreamBuilder *builder) {
 
 
     AAudioStreamBuilder_setErrorCallback(builder, ::errorCallback, this);
-
-    // The :: here indicates that the function is in the global namespace
-    // i.e. *not* EchoAudioEngine::dataCallback, but dataCallback defined at the top of this class
-    //AAudioStreamBuilder_setDataCallback(builder, ::dataCallback, this);
-
-    // We request EXCLUSIVE mode since this will give us the lowest possible latency.
-    // If EXCLUSIVE mode isn't available the builder will fall back to SHARED mode.
-//    AAudioStreamBuilder_setSharingMode(builder, AAUDIO_SHARING_MODE_EXCLUSIVE);
-//    AAudioStreamBuilder_setPerformanceMode(builder, AAUDIO_PERFORMANCE_MODE_LOW_LATENCY);
-
 }
 
 /**
@@ -260,7 +248,6 @@ void StreamEngine::setupPlaybackStreamParameters(AAudioStreamBuilder *builder) {
  * @return a new stream builder object
  */
 AAudioStreamBuilder *StreamEngine::createStreamBuilder() {
-///fh
     AAudioStreamBuilder *builder = nullptr;
     aaudio_result_t result = AAudio_createStreamBuilder(&builder);
     if (result != AAUDIO_OK) {
