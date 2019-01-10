@@ -215,7 +215,7 @@ void StreamEngine::createPlaybackStream() {
             warnIfNotLowLatency(playStream_);
 
             // Set the buffer size to the burst size - this will give us the minimum possible latency
-            AAudioStream_setBufferSizeInFrames(playStream_, framesPerBurst_);
+            AAudioStream_setBufferSizeInFrames(playStream_, framesPerBurst_); // Buffer must be bigger than frames per burst read
             PrintAudioStreamInfo(playStream_);
 
         } else {
