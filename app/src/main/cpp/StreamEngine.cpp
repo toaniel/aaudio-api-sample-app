@@ -237,8 +237,6 @@ void StreamEngine::setupPlaybackStreamParameters(AAudioStreamBuilder *builder) {
     AAudioStreamBuilder_setFormat(builder, AAUDIO_FORMAT_PCM_I16);
     AAudioStreamBuilder_setChannelCount(builder, 2); // stereo
     AAudioStreamBuilder_setSampleRate(builder, 48000); // 48KHz
-    AAudioStreamBuilder_setBufferCapacityInFrames(builder, 256); //fh
-
 
     AAudioStreamBuilder_setErrorCallback(builder, ::errorCallback, this);
 }
